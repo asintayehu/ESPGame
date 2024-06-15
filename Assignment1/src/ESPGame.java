@@ -12,8 +12,14 @@ public class ESPGame {
 		filename = keyboard.next();
 		
 		try {
+			String line;
 			File file = new File(filename);
 			BufferedReader reader = new BufferedReader(new FileReader(filename));
+			
+			while((line = reader.readLine()) != null) {
+				System.out.println(line);
+			}
+			
 			
 			
 		}catch(IOException e)
