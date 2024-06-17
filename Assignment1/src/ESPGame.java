@@ -4,29 +4,12 @@ import java.io.*;
 public class ESPGame {
 	
 	/*
+	 * PROGRAMMER: AARON SINTAYEHU
+	 * PROFESSOR: DR. GRIGORIY GRINBERG
+	 * DUE DATE: 6/17/24
+	 * ASSIGNMENT 1: ESP GAME
 	 * 
-	 *  1 black
-		2 white
-		3 gray
-		4 silver
-		5 maroon
-		6 red
-		7 purple
-		8 fuchsia
-		9 green
-		10 lime
-		11 olive
-		12 yellow
-		13 navy
-		14 blue
-		15 teal
-		16 aqua
-	 * 
-	 * 
-	 * 
-	 * 
-	 * */
-
+	 */
 	public static void main(String[] args) {
 		final String BLACK = "black";
 		final String WHITE = "white";
@@ -71,11 +54,10 @@ public class ESPGame {
 			filename = keyboard.next();
 			file = new File(filename);
 		}
-		 
-		// generates number which is associated with color in text file
 		
 		
 		try {
+			// opening file reader
 			BufferedReader reader = new BufferedReader(new FileReader(filename));
 			
 			// Outputting contents of file for player
@@ -85,6 +67,7 @@ public class ESPGame {
 				System.out.println(line);
 			}
 			
+			// closing file reader
 			reader.close();
 		
 			
@@ -96,6 +79,7 @@ public class ESPGame {
 				for(int j = 1; j <= randLineNum; j++) {
 					selectedColor = reader.readLine();
 				}
+				
 				// isolating color from number
 				selectedColor = selectedColor.split(" ")[1];
 				reader.close();
@@ -105,6 +89,7 @@ public class ESPGame {
 				System.out.print("Enter your guess: ");
 				userGuess = keyboard.next();
 				
+				// color input validation
 				while(  !userGuess.toLowerCase().equals(BLACK) && 
 						!userGuess.toLowerCase().equals(WHITE) && 
 						!userGuess.toLowerCase().equals(GRAY) && 
@@ -123,12 +108,14 @@ public class ESPGame {
 						!userGuess.toLowerCase().equals(AQUA)) {
 					
 					System.out.print("Please enter a color included in the list: ");
-					userGuess = keyboard.next();
+					userGuess = keyboard.nextLine();
 					
 				}
 				
+				// displaying correct color
 				System.out.println("\nI was thinking of " + selectedColor.toLowerCase() + ".");
 				
+				// score increment
 				if(userGuess.toLowerCase().equals(selectedColor.toLowerCase())) {
 					score += 1;
 				}
@@ -139,21 +126,31 @@ public class ESPGame {
 			System.out.println("Game over.");
 			System.out.println("You got " + score + " out of " + MAX_SCORE + " correct.");
 			
+			// clearing text input field
+			keyboard.nextLine();
+			
 			// collecting user information
 			System.out.print("Enter your name: ");
-			userName = keyboard.next();
+			userName = keyboard.nextLine();
 			
 			System.out.print("\nDescribe yourself: ");
-			userDesc = keyboard.next();
+			userDesc = keyboard.nextLine();
 			
 			System.out.print("\nDue Date: ");
-			dueDate = keyboard.next();
+			dueDate = keyboard.nextLine();
 			
 			// formatting/style
-			System.out.print("----------------------------------------------\n");
+			System.out.print("\n----------------------------------------------\n");
 			
 			System.out.println("User Name: " + userName);
-			System.out.println();
+			System.out.println("Describe yourself: " + userDesc);
+			System.out.println("Due Date: " + dueDate);
+			
+			
+			System.out.print("\n----------------------------------------------\n");
+			
+			// end of game message
+			System.out.println("Thank you for playing!\nPROGRAMMER NAME: Aaron Sintayehu\nProfessor: Dr. Grigoriy Grinberg\nDue Date: 06/17\nAssignment 1: ESP Game");
 			
 			
 		}catch(IOException e)
